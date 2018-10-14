@@ -1,7 +1,7 @@
 (function () {
-  'use strict';
+  //'use strict';
 
-  var code = [], // Color sequence the player needs to guess
+      code = [], // Color sequence the player needs to guess
       guess = [], // Color sequence of player's guesses
       options = document.getElementsByClassName('option'),
       inputRows = document.getElementsByClassName('guess'),
@@ -46,8 +46,8 @@
         rowIncrement += 1;
     }
 
-    if ( rowIncrement === inputRows.length + 1 && !compare() )
-      gameState('lost');
+    /*if ( rowIncrement === inputRows.length + 1 && !compare() )
+      gameState('lost');*/
   }
     
   function compare () {
@@ -98,6 +98,7 @@
     hintIncrement = 1; // Set the first row of sockets as available for hints
     hideModal();
     gameSetup();           // Prepare the game
+    resuelve();
   }
 
   function hideModal () {
@@ -170,4 +171,5 @@
   }
 
   gameSetup(); // Run the game
+  resuelve();
 }());
