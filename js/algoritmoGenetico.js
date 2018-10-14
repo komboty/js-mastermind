@@ -47,14 +47,14 @@ function aptitud(individuo) {
 	/* Se verifica que tan buena es la solución. */
 
 	/* Si es el color y la posición. */
-    for (var i = 0; i < code.length; i++) {
+    	for (var i = 0; i < code.length; i++) {
 //console.log(tmpCromosoma[i] + "=" + tmpCode[i]);
-      	if (tmpCromosoma[i] === tmpCode[i]) {
-        	aptitud += bien;
+      		if (tmpCromosoma[i] === tmpCode[i]) {
+        		aptitud += bien;
 
-        	tmpCode[i] = 'b';
-        	tmpCromosoma[i] = 'a';
-      	}
+        		tmpCode[i] = 'b';
+        		tmpCromosoma[i] = 'a';
+      		}
   	}
 //console.log("cromosoma: " + tmpCromosoma + " code: " + tmpCode);
 
@@ -62,14 +62,14 @@ function aptitud(individuo) {
   	for (var j = 0; j < code.length; j++) {
 //console.log(tmpCromosoma[j] + "->" + tmpCode.indexOf(tmpCromosoma[j]));
 		var indice = tmpCode.indexOf(tmpCromosoma[j]);
-      	if (indice !== -1) {
-	        aptitud += casi;
-	        tmpCode[indice] = 'b';
-	    }
-    }
+      		if (indice !== -1) {
+	        	aptitud += casi;
+	        	tmpCode[indice] = 'b';
+	    	}
+    	}
 
-    individuo.aptitud = aptitud;
-    return aptitud === 100;
+    	individuo.aptitud = aptitud;
+    	return aptitud === 100;
 }
 
 function evaluacion() {
@@ -96,7 +96,7 @@ function seleccion() {
 
 function cruce() {
 	var tamPoblacion = poblacion.length;
-	var cruce = Math.floor(Math.random() * (numGenes - 1)) + 1;	
+	var cruce = Math.floor(Math.random() * (numGenes - 2)) + 1;	
 	console.log("cruce() n=" + cruce);
 
 	for (var i = 0; i < tamPoblacion; i+=2) {
@@ -104,12 +104,12 @@ function cruce() {
 		var mama = poblacion[i + 1].cromosoma;
 
 		var hijo1 = {};
-	    hijo1.cromosoma = papa.substring(0, cruce) + mama.substring(cruce, numGenes);
-	    hijo1.aptitud = 0;
+	    	hijo1.cromosoma = papa.substring(0, cruce) + mama.substring(cruce, numGenes);
+	    	hijo1.aptitud = 0;
 
 		var hijo2 = {};
-	    hijo2.cromosoma = mama.substring(0, cruce) + papa.substring(cruce, numGenes);
-	    hijo2.aptitud = 0;
+	    	hijo2.cromosoma = mama.substring(0, cruce) + papa.substring(cruce, numGenes);
+	    	hijo2.aptitud = 0;
 
 		poblacion.push(hijo1);
 		poblacion.push(hijo2);
@@ -132,28 +132,28 @@ function mutacion() {
 }
 
 function simulacion() {	
-    rowIncrement = 1,
-    hintIncrement = 1
+    	rowIncrement = 1,
+    	hintIncrement = 1
 
-    // Clear the guess sockets
-    for (var i = 0; i < inputRows.length; i++) {
-      inputRows[i].innerHTML = '';
-      for (var j = 0; j < 4; j++) {
-        var socket = document.createElement('div');
-        socket.className = 'socket';
-        inputRows[i].appendChild(socket);
-      }
-    }
+    	// Clear the guess sockets
+    	for (var i = 0; i < inputRows.length; i++) {
+      		inputRows[i].innerHTML = '';
+      		for (var j = 0; j < 4; j++) {
+        		var socket = document.createElement('div');
+        		socket.className = 'socket';
+        		inputRows[i].appendChild(socket);
+      		}
+    	}
 
-    // Clear the hint sockets
-    for (var i = 0; i < hintContainer.length; i++) {
-      var socketCollection = hintContainer[i].getElementsByClassName('socket');
-      for (var j = 0; j < 4; j++) {
-        socketCollection[j].className = 'js-hint-socket socket';
-      }
-    }
+    	// Clear the hint sockets
+	for (var i = 0; i < hintContainer.length; i++) {
+      		var socketCollection = hintContainer[i].getElementsByClassName('socket');
+      		for (var j = 0; j < 4; j++) {
+        		socketCollection[j].className = 'js-hint-socket socket';
+      		}
+    	}
 
-    document.getElementsByTagName('body')[0].className = ''; // Reset background
+    	document.getElementsByTagName('body')[0].className = ''; // Reset background
 
 	poblacion.forEach(individuo => {
 		var cromosoma = individuo.cromosoma.split('');
